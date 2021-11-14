@@ -1,29 +1,52 @@
-import React from 'react';
-import dummyData from '../pages/Finder';
+import React, {useState} from 'react';
+import { dummyData } from '../pages/Finder';
+import { SearchCardList } from './searchCardList';
+import { SearchInfoCard } from './searchInfoCard';
 
 const Search = () => {
+    const [filter, setFilter] = useState('');
+    const [data, setData] = useState(null);
+    const [infoData, setInfoData] = useState(null);
+
+    const setText = (event) =>{
+        let value = event.target.value;
+        if (value && value.length > 0) {
+            setFilter(event.target.value);
+            let dataSearch = dummyData.cardData.filter(item => item.title.includes(event.target.value));
+            setData(dataSearch);
+        } else {
+            setData(null);
+        }
+    }
+
+    const findInfoData = (key) => {
+        let restInfo = dummyData.infoCardData.filter(item => item.id == key);
+        setInfoData(restInfo);
+        console.log(restInfo)
+    }
+
+    const closeInfoCard = () => {
+        setInfoData(null);
+    }
+    
+    
     return (
         <section className="py-4 container">
             <div className="row justify-content-center">
-                <div className="col-12 mb-5">
+                {infoData == null ? <div className="col-12 mb-5">
                     <div className="mb-3 col-4 mx-auto text-center">
                         <label className="from-lable h4">Search</label>
-                        <input type="text" className="from contol"/>
+                        <input type="text" className="from contol"
+                        onChange={setText.bind(this)}
+                        />
                     </div>
-                </div>
-                {dummyData.cardData.map((item,index)=> {
+                </div> : ''}
+                {infoData == null && data != null && data.map((item)=> {
                     return(
-                     <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4">
-                     <div className="card p=0 overflow-hidden h-100 shadow">
-                         <img src={item.image} className="card-img-top"/>
-                         <div className="card-body">
-                             <h5 className="card-title">{item.title}</h5>
-                             <p className="card-text">{item.description}</p>
-                         </div>
-                     </div>
-                 </div>
-                 )
+                        <SearchCardList cardData={item} infoDataClick={findInfoData} key={item.id} />
+                     )
                 })} 
+                {infoData != null && <SearchInfoCard infoCard={infoData[0]} closeClick={closeInfoCard} />} 
             </div>
         </section>
        

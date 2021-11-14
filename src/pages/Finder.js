@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import Search from '../components/search';
 import image1 from "../assets/images/FoodAndBeverage.png";
+import Map from './components/map';
+import {GoogleMap , withScriptjs, withGoogleMap} from "react-google-maps";
+
+
+
+const WareppedMap = withScriptjs(withGoogleMap(Map));
 
 const dummyData =  {
     cardData:[ 
         {  
-        id:1 ,
-        img : image1 ,
-        title: "3 Margaritas",
-        description: "Mexican Restaurant",
-        score: 4.8
-    }
-]
+            id:1 ,
+            img : image1 ,
+            title: "3 Margaritas",
+            description: "Mexican Restaurant",
+            score: 4.8
+        }
+    ],
+    infoCardData: [
+        { 
+            id: 1,
+            img : image1 ,
+            title: "3 Margaritas",
+            description: "Mexican Restaurant",
+            score: 4.8,
+            address: "Somewhere in somecity",
+            phone_number: "+1 555 55 55",
+
+        }
+    ]
 }
 
 const Finder = () => {
@@ -24,12 +42,19 @@ const Finder = () => {
     return(
         <div className=''
         style={styles.container}>
+
             <div style={styles.map}>
-                <h1>Map List</h1>
+                <WareppedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDBANMz84xHoZWGGx2rGRNacO8LykbJJzk`}
+                loadingElement={<div style={{ height: "100%"}}/>}
+                containerElement={<div style={{ height: "100%"}}/>}
+                mapElement={<div style={{ height: "100%"}}/>}
+                />
             </div>
+
+
             <div style={styles.info}>
                 <Search />
-                <h3 className='ui header'>Info box and Rest List</h3>
+               
                 <div onClick={showRestorant}>
 
                 </div>
@@ -44,7 +69,8 @@ const styles = {
     container: {
         height: "calc(100vh - 102px)",
         backgroundColor: "gray",
-        display: "flex"
+        display: "flex",
+        width: "100vw"
     },
     map: {
         width: "67%",
@@ -58,4 +84,4 @@ const styles = {
     }
 }
 
-export default { Finder,dummyData} ;
+export { Finder, dummyData} ;
