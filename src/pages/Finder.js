@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Search from '../components/search';
 import image1 from "../assets/images/FoodAndBeverage.png";
-import Map from './components/map';
+import Map from '../components/map';
 import {GoogleMap , withScriptjs, withGoogleMap} from "react-google-maps";
 
 
@@ -44,7 +44,7 @@ const Finder = () => {
         style={styles.container}>
 
             <div style={styles.map}>
-                <WareppedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDBANMz84xHoZWGGx2rGRNacO8LykbJJzk`}
+                <WareppedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDBANMz84xHoZWGGx2rGRNacO8LykbJJzk`}
                 loadingElement={<div style={{ height: "100%"}}/>}
                 containerElement={<div style={{ height: "100%"}}/>}
                 mapElement={<div style={{ height: "100%"}}/>}
