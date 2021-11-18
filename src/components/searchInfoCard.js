@@ -7,4 +7,4 @@ function SearchInfoCard(props) {
     );
 }
 
-export {SearchInfoCard}
+export { SearchInfoCard }

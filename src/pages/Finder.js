@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from '../components/search';
 import image1 from "../assets/images/FoodAndBeverage.png";
 import Map from '../components/map';
+import {getRestaurants} from '../redux/actionCreators';
 import {GoogleMap , withScriptjs, withGoogleMap} from "react-google-maps";
 
 
@@ -35,10 +36,13 @@ const dummyData =  {
 const Finder = () => {
     const [showRestorantInfo, setShowRestorantInfo] = useState(false);
     const [selectedRestorant, setSelectedRestorant] = useState(null);
+    const [restaurantList, setRestaurantList] = useState([]);
 
     const showRestorant = () => {
 
     }
+
+    
     return(
         <div className=''
         style={styles.container}>

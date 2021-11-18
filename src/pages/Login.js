@@ -1,39 +1,43 @@
 import React, {useState} from 'react';
 import loginImg from "../assets/images/login.jpeg";
-
+import { submitLogin } from '../redux/actionCreators';
+import { connect } from 'react-redux' ;
 
 export function Login(props){
+    
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [error, setError] = useState({
        username: "",
        password: ""
    });
+  
 
    const startLoginProccess = () => {
-        validateLoginForm();
-        sendLoginForm();
+        if (!validateLoginForm()) {
+            props.submitLogin({ username, password });
+        }
    }
 
    const validateLoginForm = () => {
        console.log(username.length);
+       let hasError = false;
        let newError = { 
             username : "",
             password : ""
        }
         if (username.length <= 0) {
             newError.username = "Username can not be empty";
+            hasError = true;
         }
         if (password.length <= 0) {
             newError.password = "Password can not be empty";
+            hasError = true;
         }
 
         setError(newError);
+        return hasError;
     }
-
-   const sendLoginForm = () => {
-
-   }
 
     return <div className="base-container">
     <div className="header">Login</div>
@@ -63,4 +67,4 @@ export function Login(props){
 
 
 
-export default Login;
+export default connect(null, { submitLogin })(Login);
