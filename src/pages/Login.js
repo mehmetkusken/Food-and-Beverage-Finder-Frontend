@@ -2,25 +2,28 @@ import React, {useState} from 'react';
 import loginImg from "../assets/images/login.jpeg";
 import { submitLogin } from '../redux/actionCreators';
 import { connect } from 'react-redux' ;
+import { useNavigate } from 'react-router-dom';
+
 
 export function Login(props){
-    
+  
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [error, setError] = useState({
        username: "",
        password: ""
    });
+   const navigate = useNavigate()
   
 
    const startLoginProccess = () => {
         if (!validateLoginForm()) {
-            props.submitLogin({ username, password });
+            props.submitLogin({username, password})
+            navigate("/")
         }
    }
 
    const validateLoginForm = () => {
-       console.log(username.length);
        let hasError = false;
        let newError = { 
             username : "",

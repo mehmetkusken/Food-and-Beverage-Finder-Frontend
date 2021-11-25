@@ -1,68 +1,29 @@
-import React, {useState, useEffect} from 'react';
-import { getRestaurants } from '../redux/actionCreators';
-import { SearchCardList } from './searchCardList';
-import { SearchInfoCard } from './searchInfoCard';
+import { useState } from "react"
+import { getRestaurants } from '../redux/actionCreators'
+import { connect } from 'react-redux'
 
-const Search = () => {
-    const [filter, setFilter] = useState('');
-    const [data, setData] = useState(null);
-    const [infoData, setInfoData] = useState(null);
-    const [restList, setRestList] = useState([]);
+function Search(props){
+    const [description, setDescription] = useState("")
+    const [location, setLocation] = useState("")
 
-    useEffect(() => {
-        console.log(getRestaurants());
-    }, []);
-
-    const setText = (event) =>{
-        let value = event.target.value;
-        if (event.target.value.length < 3) {
-            return;
-        }
-        if (value && value.length > 0) {
-            setFilter(event.target.value);
-            getRestaurants(event.target.value, 3).then(list => {
-           
-                setData(list);
-            })
-            let dataSearch = restList.filter(item => item.title.includes(event.target.value));
-            setData(dataSearch);
-        } else {
-            setData(null);
-        }
-    }
-
-    const findInfoData = (key) => {
-        let restInfo = restList.filter(item => item.id == key);
-        setInfoData(restInfo);
-        console.log(restInfo)
-    }
-
-    const closeInfoCard = () => {
-        setInfoData(null);
+    const onSubmit = (e) => {
+        e.preventDefault()
+        let args = []
+        location && args.push({location})
+        description && args.push({description})
+        props.getRestaurants(args)
     }
     
-    
-    return (
-        <section className="py-4 container">
-            <div className="row justify-content-center">
-                {infoData == null ? <div className="col-12 mb-5">
-                    <div className="mb-3 col-4 mx-auto text-center">
-                        <label className="from-lable h4">Search</label>
-                        <input type="text" className="from contol"
-                        onChange={setText.bind(this)}
-                        />
-                    </div>
-                </div> : ''}
-                {infoData == null && data != null && data.map((item)=> {
-                    return(
-                        <SearchCardList cardData={item} infoDataClick={findInfoData} key={item.id} />
-                     )
-                })} 
-                {infoData != null && <SearchInfoCard infoCard={infoData[0]} closeClick={closeInfoCard} />} 
-            </div>
-        </section>
-       
-    )
+    return <form onSubmit={onSubmit} >
+        <label>Type of Food:
+        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Taco , Mexican etc."/>
+        </label>
+        <label>Location:
+        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Denver, 80216 etc."/>
+        </label>
+        <input type="submit" value="Search for some food"></input>
+    </form>
+
 }
 
-export default Search
+export default connect(null , {getRestaurants})(Search)

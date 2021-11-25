@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import loginImg from "../assets/images/login.jpeg";
 import { submitSignup } from '../redux/actionCreators';
 import { connect } from 'react-redux' ;
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,11 +18,16 @@ export function Signup(props){
        zipcode : "",
        email: ""
     });
+    const navigate = useNavigate()
+
+    
 
     const startSignupProccess = () => {
         
         if (!validateSignupForm()) {
            props.submitSignup({ username, password, email, zipcode})
+           navigate("/login")
+
         }
    }
 

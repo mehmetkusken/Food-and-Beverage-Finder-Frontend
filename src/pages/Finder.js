@@ -1,47 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import Search from '../components/search';
-import image1 from "../assets/images/FoodAndBeverage.png";
 import Map from '../components/map';
-import {getRestaurants} from '../redux/actionCreators';
+import {getRestaurants, getRestaurant} from '../redux/actionCreators';
 import {GoogleMap , withScriptjs, withGoogleMap} from "react-google-maps";
-
+import {connect} from 'react-redux';
+import SearchCardList from '../components/searchCardList';
+import Search from '../components/search'
 
 
 const WareppedMap = withScriptjs(withGoogleMap(Map));
 
-const dummyData =  {
-    cardData:[ 
-        {  
-            id:1 ,
-            img : image1 ,
-            title: "3 Margaritas",
-            description: "Mexican Restaurant",
-            score: 4.8
-        }
-    ],
-    infoCardData: [
-        { 
-            id: 1,
-            img : image1 ,
-            title: "3 Margaritas",
-            description: "Mexican Restaurant",
-            score: 4.8,
-            address: "Somewhere in somecity",
-            phone_number: "+1 555 55 55",
 
-        }
-    ]
-}
+const Finder = (props) => {
+    const [showRestaurantInfo, setShowRestaurantInfo] = useState(false);
+    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
-const Finder = () => {
-    const [showRestorantInfo, setShowRestorantInfo] = useState(false);
-    const [selectedRestorant, setSelectedRestorant] = useState(null);
-    const [restaurantList, setRestaurantList] = useState([]);
-
-    const showRestorant = () => {
+    const showRestaurant = () => {
 
     }
 
+    useEffect(() => {
+        props.getRestaurants();
+    }, []);
     
     return(
         <div className=''
@@ -58,11 +37,9 @@ const Finder = () => {
 
             <div style={styles.info}>
                 <Search />
-               
-                <div onClick={showRestorant}>
-
-                </div>
-                {showRestorantInfo ? <dummyData rest={selectedRestorant}  /> : null}
+                <SearchCardList restaurants={props.restaurants} />
+                {/** List */}
+                {/** InfoCard */}
             </div>
         </div>
     );
@@ -88,4 +65,11 @@ const styles = {
     }
 }
 
-export { Finder, dummyData} ;
+const mapStateToProps = (state) => {
+    return {
+        restaurants: state.restaurants,
+        
+    }
+}
+
+export default connect(mapStateToProps, {getRestaurants})(Finder) ;

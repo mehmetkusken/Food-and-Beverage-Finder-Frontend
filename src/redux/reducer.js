@@ -1,23 +1,13 @@
+const initialRestaurant = null;
+
+  const initialUser = {
+    username: ""
+  }
+   
 const initialState = {
     restaurants: [],
-    restaurant: {
-        id: 0,
-        name: "",
-        url: "",
-        latitude: 0,
-        longitude: 0, 
-        imageUrl: "",
-        address: "",
-        description: "",
-        zipCode: 0,
-        score: 0,
-        phone: "",
-    },
-    user: {
-        username: "",
-        email: "",
-        zipcode: ""
-    }
+    selectedRestaurant: initialRestaurant,
+    user: initialUser
 }
 
 
@@ -25,10 +15,14 @@ export default function reducer(state=initialState,action){
     switch (action.type){
         case "GET_RESTAURANTS":
             return {...state, restaurants: action.payload};
-        case "GET_RESTAURANTS":
-            return {...state, restaurant: action.payload};
+        case "GET_RESTAURANT":
+            return {...state, selectedRestaurant: action.payload};
         case "SET_USER":
             return {...state, user: action.payload};
+        case "CLEAR_RESTAURANT":
+            return {...state, selectedRestaurant: initialRestaurant};
+        case "LOGOUT":
+            return {...state, user: initialUser};
         default:
             return{...state}
     }
