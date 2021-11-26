@@ -12,11 +12,6 @@ const WareppedMap = withScriptjs(withGoogleMap(Map));
 
 const Finder = (props) => {
     const [showRestaurantInfo, setShowRestaurantInfo] = useState(false);
-    const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-
-    const showRestaurant = () => {
-
-    }
 
     useEffect(() => {
         props.getRestaurants();
@@ -36,8 +31,10 @@ const Finder = (props) => {
 
 
             <div style={styles.info}>
-                <Search />
-                <SearchCardList restaurants={props.restaurants} />
+                { !showRestaurantInfo ?  <Search /> : '' }
+
+                <SearchCardList restaurants={props.restaurants} showInfo={showRestaurantInfo} setShowInfo={setShowRestaurantInfo} />               
+                
                 {/** List */}
                 {/** InfoCard */}
             </div>

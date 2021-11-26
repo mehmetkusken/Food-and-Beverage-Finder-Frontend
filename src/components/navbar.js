@@ -22,10 +22,10 @@ const Navbar = ({logout, username }) => {
             <a className='ui teal inverted segment'>F & B  Finder</a>
             <div className='ui right floated header'>
                 
-                <Link className='ui button' to='/'>Home</Link>
-                <Link className='ui button' to='/finder'>F&B Finder</Link>
-                <Link className='ui button' to='/profile'>Profile</Link>
-                <button className='ui button' onClick={logoutProccess}>Logout</button>
+                <Link  className='ui button' to='/'> Home </Link>
+                <Link className='ui button' to='/finder'> F&B Finder </Link>
+                <Link className='ui button' to='/profile'> Profile </Link>
+                <button className='ui button' onClick={logoutProccess}> Logout </button>
                 
        
                 
