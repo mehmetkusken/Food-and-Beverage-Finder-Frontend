@@ -1,3 +1,22 @@
+Welcome to F&B Finder!
+
+Here is a short demo of this application: 
+
+The purpose of this application is to find restaurants that are near your physical location, using Yelp's robust API. When loading up, it searches the top 15 restaurants in the area (based on Yelp's proprietary ranking). It also gives you access to information, such as: address, phone number, range, rating, , whether it is currently open, etc.
+
+This application allows you to also search for restaurants in any place where you drop the home marker . You would be able to search for any terms accepted by Yelp's API.
+
+Lastly, a user can save their favorite restaurants to a Profile.
+
+The back end of this application is found in this repository: https://github.com/mehmetkusken/Food-and-Beverage-Finder-Backend.git This application was built using React.js, Redux and utilizes the Yelp Fusion API, Google Maps API and a Geolocation API. 
+
+To run this application, you will need:
+
+API keys to Yelp Fusion API and Google Maps API
+Run "bundle install"
+Create database (Postgres) and migrate the tables to the database.
+I hope you enjoy it!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -5,6 +5,7 @@ const initialRestaurant = null;
   }
    
 const initialState = {
+    favorites: [],
     restaurants: [],
     selectedRestaurant: initialRestaurant,
     user: initialUser
@@ -21,6 +22,10 @@ export default function reducer(state=initialState,action){
             return {...state, user: action.payload};
         case "CLEAR_RESTAURANT":
             return {...state, selectedRestaurant: initialRestaurant};
+        case "ADD_FAVORITE":
+            return {...state, favorite: action.payload};
+        case "GET_FAVORITES":
+            return {...state, favorites: action.payload};
         case "LOGOUT":
             return {...state, user: initialUser};
         default:

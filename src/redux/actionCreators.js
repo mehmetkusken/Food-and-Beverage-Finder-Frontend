@@ -56,19 +56,23 @@ export const getFavorites = () => {
 
     return dispatch => fetch(url + "favorites")
     .then(res => res.json())
-    .then(favorites => dispatch({type: "GET_FAVORITES", payload: favorites}))
+    .then(favorites => dispatch({type: "GET_FAVORITES", payload: console.log(favorites)}))
+    
 }
 
-export const submitFavorite = (restaurantId) => {
+export const submitFavorite = (id) => {
+   
     return dispatch => fetch(url + "favorites", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': localStorage.token
       },
-      body: JSON.stringify({id: restaurantId})
+      body: JSON.stringify({restaurant_id: id})
+      
     })
     .then(res => {
+        
       if (res.ok) {
         res.json().then(favorite => dispatch({type: "ADD_FAVORITE", payload: favorite}))
       } else {
@@ -76,6 +80,16 @@ export const submitFavorite = (restaurantId) => {
       }
     })
   }
+
+
+  export const deleteContact = (id) => {
+    return dispatch => fetch(url + "favorites" ,{
+        type: "DELETE_FAVORITE",
+        id: id
+    })
+}
+
+  
 
 
 
