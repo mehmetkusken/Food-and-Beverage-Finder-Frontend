@@ -1,9 +1,9 @@
 import React from 'react';
-import FavoriteCard from '../components/favoriteCard'
+import Favorites from '../components/favorite'
 
 const Profile = () => {
     return(
-        <FavoriteCard />
+        <Favorites />
     );
 
 }

@@ -30,7 +30,7 @@ function Map(props) {
 
    
     return (
-    <GoogleMap zoom={isInfoShow ? 17 : 13} center={centerMap} >  
+    <GoogleMap zoom={isInfoShow ? 17 : 12} center={centerMap} >  
         {props.restaurants.map((park) => (
         <Marker key={park.id} position={{
             lat: park.latitude ,

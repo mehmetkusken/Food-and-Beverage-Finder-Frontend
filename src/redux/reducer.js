@@ -26,6 +26,11 @@ export default function reducer(state=initialState,action){
             return {...state, favorite: action.payload};
         case "GET_FAVORITES":
             return {...state, favorites: action.payload};
+        case "DELETE_FAVORITE":
+            let newFavorite = state.favorites.filter(function (element, index) {
+                return element.id !== action.payload
+            });
+            return {...state, favorites: newFavorite};
         case "LOGOUT":
             return {...state, user: initialUser};
         default:

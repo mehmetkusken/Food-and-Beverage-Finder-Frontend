@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Map from '../components/map';
-import {getRestaurants, getRestaurant} from '../redux/actionCreators';
-import {GoogleMap , withScriptjs, withGoogleMap} from "react-google-maps";
+import {getRestaurants} from '../redux/actionCreators';
+import { withScriptjs, withGoogleMap} from "react-google-maps";
 import {connect} from 'react-redux';
 import SearchCardList from '../components/searchCardList';
 import Search from '../components/search'

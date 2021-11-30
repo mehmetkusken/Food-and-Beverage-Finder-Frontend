@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import {getRestaurant, clearRestaurant, submitFavorite} from '../redux/actionCreators';
+import {useEffect, useState} from 'react';
+import {getRestaurant, clearRestaurant, submitFavorite, getFavorites} from '../redux/actionCreators';
 import {connect} from 'react-redux';
 import SearchInfoCard from './searchInfoCard';
 
@@ -9,6 +9,7 @@ import SearchInfoCard from './searchInfoCard';
 function SearchCardList(props) {
     const [isOpenedInfoCard, setIsOpenedInfoCard] = useState(false);
     const [favoritedRestaurant, setFavoritedRestaurant] = useState(null)
+    const [isFavorable, setIsFavorable] = useState(true);
     
 
     const getRestaurantInfo = (id) => {
@@ -24,15 +25,18 @@ function SearchCardList(props) {
     const addToFavorite = (id = null) => {
       if (id) {
         props.submitFavorite(id);
+        props.getFavorites();
       }
     
     }
+
+   
 
     return (
         <div style={{ height: "calc(100vh - 103px)", overflowY: 'auto'}}>
             
             {props.restaurant ?
-             <SearchInfoCard closeInfoCard={closeInfoCard} restaurant={props.restaurant} onAddFavoriteClick={addToFavorite} />
+             <SearchInfoCard favorites={props.favorites} closeInfoCard={closeInfoCard} restaurant={props.restaurant} onAddFavoriteClick={addToFavorite} />
             : 
             <>
                 {props.restaurants.map((restaurantData) => {
@@ -62,7 +66,7 @@ function SearchCardList(props) {
 const mapStateToProps = (state) => {
     return {
         restaurant: state.selectedRestaurant,  
-        
+        favorites: state.favorites
     }
 }
 
@@ -106,4 +110,4 @@ const stylesList = {
 
 
 
-export default connect(mapStateToProps, {getRestaurant, clearRestaurant, submitFavorite})(SearchCardList) ;
+export default connect(mapStateToProps, {getRestaurant, clearRestaurant, submitFavorite, getFavorites})(SearchCardList) ;

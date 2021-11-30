@@ -1,4 +1,5 @@
 export default function SearchInfoCard(props) {
+
      return (<div style={stylesInfo.container}>
 
         <div style={stylesInfo.header}>
@@ -18,7 +19,7 @@ export default function SearchInfoCard(props) {
             </div>
             
         </div>
-        <img style={stylesInfo.restaurantImg} src={props.restaurant.imageUrl} />
+        <img  style={stylesInfo.restaurantImg} src={props.restaurant.imageUrl} />
         <div style={stylesInfo.body}>
             <div style={stylesInfo.description}>{props.restaurant.description}</div>
             <div class="" style={stylesInfo.address} >
@@ -33,12 +34,12 @@ export default function SearchInfoCard(props) {
                     <i class="yelp icon"></i>
                     View On Yelp
                 </a>
-                <div>
+                {
+                    props.favorites.filter(favorite => favorite.restaurant.id == props.restaurant.id).length > 0 ? '' : <div>
                     <button class="tiny ui button violet"  onClick={(event) => props.onAddFavoriteClick(props.restaurant.id)}>Add Favorite</button>
                 </div>
+                }    
             </div>
-            
-
         </div>
      </div>);
 }
@@ -62,12 +63,13 @@ const stylesInfo = {
         height: "250px",
         objectFit: "cover",
         objectPosition: "center"
+        
     } ,
     body: { 
         padding: "16px" ,
         display: "flex",
         flexDirection: "column",
-        alingItems: "center",
+        alignItems: "center",
         height: "100%"
     },
     description: {

@@ -56,7 +56,7 @@ export const getFavorites = () => {
 
     return dispatch => fetch(url + "favorites")
     .then(res => res.json())
-    .then(favorites => dispatch({type: "GET_FAVORITES", payload: console.log(favorites)}))
+    .then(favorites => dispatch({type: "GET_FAVORITES", payload: favorites}))
     
 }
 
@@ -82,11 +82,16 @@ export const submitFavorite = (id) => {
   }
 
 
-  export const deleteContact = (id) => {
-    return dispatch => fetch(url + "favorites" ,{
-        type: "DELETE_FAVORITE",
-        id: id
-    })
+  export const deleteFavorite = (id) => {
+     
+    return dispatch => fetch(url + "favorites/" + id, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.token
+          }, 
+        })
+        .then(res => dispatch({type: "DELETE_FAVORITE", payload: id}))
 }
 
   
