@@ -35,8 +35,7 @@ const Finder = (props) => {
 
                 <SearchCardList restaurants={props.restaurants} showInfo={showRestaurantInfo} setShowInfo={setShowRestaurantInfo} />               
                 
-                {/** List */}
-                {/** InfoCard */}
+                
             </div>
         </div>
     );

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux'
 import { logout } from '../redux/actionCreators'
@@ -48,8 +47,6 @@ const Navbar = ({logout, username }) => {
         </nav> 
         return username ? loggedInRender() : loggedOutRender()
     
-
-   
 }
 const mapStateToProps = (state) => ({username: state.user.username})
 

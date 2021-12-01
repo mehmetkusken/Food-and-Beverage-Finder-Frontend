@@ -11,7 +11,7 @@ import { autoLogin} from './redux/actionCreators'
 function App({autoLogin}) {
   
   useEffect(() => localStorage.token && autoLogin(), [autoLogin])
-
+  
 
   return (
     <BrowserRouter>
@@ -26,4 +26,3 @@ function App({autoLogin}) {
 const mapStateToProps = (state) => ({user: state.user})
 
 export default connect(mapStateToProps, { autoLogin})(App);
-

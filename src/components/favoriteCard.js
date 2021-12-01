@@ -16,7 +16,9 @@ function FavoriteCard({id, user, restaurant, onDeleteFavorite}){
             </div>
             
         </div>
+        <div style={stylesInfo.picture}>
         <img style={stylesInfo.restaurantImg} src={restaurant.imageUrl} />
+        </div>
         <div style={stylesInfo.body}>
             <div style={stylesInfo.description}>{restaurant.description}</div>
             <div class="" style={stylesInfo.address} >
@@ -56,6 +58,12 @@ const stylesInfo = {
         fontWeight: "600",
         letterSpacing: "0.02rem",
         
+    },
+    picture: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
     restaurantImg: {
         width: "250px",

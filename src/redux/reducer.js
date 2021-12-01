@@ -8,7 +8,7 @@ const initialState = {
     favorites: [],
     restaurants: [],
     selectedRestaurant: initialRestaurant,
-    user: initialUser
+    user: initialUser,
 }
 
 

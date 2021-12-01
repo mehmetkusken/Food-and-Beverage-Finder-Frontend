@@ -26,7 +26,7 @@ export function Signup(props){
         
         if (!validateSignupForm()) {
            props.submitSignup({ username, password, email, zipcode})
-           navigate("/login")
+           navigate("/")
 
         }
    }
