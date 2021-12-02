@@ -14,6 +14,7 @@ function Map(props) {
     const [isInfoShow, setIsInfoShow] = useState(false);
 
     useEffect(() => {
+        
         if (props.restaurants && props.restaurants.length > 0) {
             setCenterMap({lat: props.restaurants[0].latitude, lng: props.restaurants[0].longitude})
         }
@@ -28,7 +29,7 @@ function Map(props) {
         }
     }, [props.selectedRestaurant])
 
-   
+  
     return (
     <GoogleMap zoom={isInfoShow ? 17 : 12} center={centerMap} >  
         {props.restaurants.map((park) => (

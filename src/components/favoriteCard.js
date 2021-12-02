@@ -1,10 +1,12 @@
-function FavoriteCard({id, user, restaurant, onDeleteFavorite}){
-        
+import { connect } from 'react-redux'
+
+function FavoriteCard({id, user, restaurant, onDeleteFavorite , username}){
+    if (username == user.username) {
     return <div>
         
         <div style={stylesInfo.container}>
         <div style={stylesInfo.header}>
-
+        
             <div style={stylesInfo.title}>{restaurant.name}</div>
             <div class="tiny yellow ui labeled button" tabindex="0">
                 <div class="tiny yellow ui button">
@@ -38,9 +40,15 @@ function FavoriteCard({id, user, restaurant, onDeleteFavorite}){
                 </div>
             </div>
         </div>
+        
+        
+    
      </div>
-
-    </div>
+     
+    </div> }
+    else {
+        return <div></div>
+    }
 }
 const stylesInfo = {
     container: {
@@ -108,4 +116,6 @@ const stylesInfo = {
     }
 };
 
-export default FavoriteCard;
+const mapStateToProps = (state) => ({username: state.user.username})
+
+export default connect(mapStateToProps)(FavoriteCard);
