@@ -26,6 +26,8 @@ function graphQl (query){
   })
 }
 
+
+
 export const getRestaurants = (arr=[]) => {
 const args = arr.map(obj => `${Object.keys(obj)}: "${obj[Object.keys(obj)]}"`).join(", ")
   return dispatch => graphQl(`{
@@ -52,7 +54,14 @@ const args = arr.map(obj => `${Object.keys(obj)}: "${obj[Object.keys(obj)]}"`).j
 
 export const getFavorites = () => {
 
-  return dispatch => fetch(url + "favorites")
+  // return {type: "something"}
+
+  return dispatch => fetch(url + "favorites", {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.token
+    }
+  })
   .then(res => res.json())
   .then(favorites => dispatch({type: "GET_FAVORITES", payload: favorites}))
   
@@ -73,7 +82,6 @@ export const submitFavorite = (id) => {
       
     if (res.ok) {
       res.json().then(favorite => {
-        console.log(favorite);
         dispatch({type: "ADD_FAVORITE", payload: favorite})
       })
     } else {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getRestaurants } from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
@@ -6,12 +6,14 @@ function Search(props){
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
 
+
     const onSubmit = (e) => {
         e.preventDefault()
         let args = []
         location && args.push({location})
         description && args.push({description})
         props.getRestaurants(args)
+       
     }
     
     return <form class="ui form" onSubmit={onSubmit} style={{padding: "16px"}} >
@@ -32,5 +34,9 @@ function Search(props){
     </form>
 
 }
+
+
+
+
 
 export default connect(null , {getRestaurants})(Search)

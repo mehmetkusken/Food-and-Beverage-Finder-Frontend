@@ -30,7 +30,7 @@ function SearchCardList(props) {
     
     }
 
-   
+   console.log(props.favorites)
 
     return (
         <div style={{ height: "calc(100vh - 103px)", overflowY: 'auto'}}>

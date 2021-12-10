@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { getFavorites, deleteFavorite } from '../redux/actionCreators'
+import { getFavorites, deleteFavorite , likeRestaurant } from '../redux/actionCreators'
 
 import  FavoriteCard  from './favoriteCard'
 

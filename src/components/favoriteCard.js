@@ -1,13 +1,17 @@
 import { connect } from 'react-redux'
+import React, {useState , useEffect} from 'react';
 
-function FavoriteCard({id, user, restaurant, onDeleteFavorite , username}){
-    if (username == user.username) {
-    return <div>
-        
+function FavoriteCard({id, user, restaurant, onDeleteFavorite , username }){
+    
+   
+       
+    return  <div>
+    
         <div style={stylesInfo.container}>
         <div style={stylesInfo.header}>
-        
+    
             <div style={stylesInfo.title}>{restaurant.name}</div>
+   
             <div class="tiny yellow ui labeled button" tabindex="0">
                 <div class="tiny yellow ui button">
                     <i class="star icon"></i> 
@@ -38,6 +42,7 @@ function FavoriteCard({id, user, restaurant, onDeleteFavorite , username}){
                 <div>
                     <button class="tiny ui button violet"  onClick={(event) => onDeleteFavorite(id)}>Delete</button>
                 </div>
+               
             </div>
         </div>
         
@@ -46,10 +51,8 @@ function FavoriteCard({id, user, restaurant, onDeleteFavorite , username}){
      </div>
      
     </div> }
-    else {
-        return <div></div>
-    }
-}
+    
+
 const stylesInfo = {
     container: {
         

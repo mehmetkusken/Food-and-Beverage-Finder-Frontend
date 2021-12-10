@@ -9,6 +9,7 @@ const initialState = {
     restaurants: [],
     selectedRestaurant: initialRestaurant,
     user: initialUser,
+   
 }
 
 
